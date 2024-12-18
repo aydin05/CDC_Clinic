@@ -1,0 +1,7 @@
+<h1>Delete Info</h1>
+<p>Are you sure you want to delete "{{ about.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'dashboard:about_list' %}">Cancel</a>
+</form>

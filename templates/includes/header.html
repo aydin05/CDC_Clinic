@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container-fluid">
+                <div><a class="navbar-brand" href="{% url 'myapp:home' %}" style="padding-left: 180px;"><img src="{% static 'media/LogoV3.png' %}" alt="" width="100" height="100"></a></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:home' %}" style="padding-right: 30px;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:services' %}" style="padding-right: 30px;">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:employees' %}" style="padding-right: 30px;">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:posts' %}" style="padding-right: 30px;">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:gallery' %}" style="padding-right: 30px;">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'myapp:about-us' %}" style="padding-right: 80px;">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

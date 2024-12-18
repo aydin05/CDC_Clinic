@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <div class="gallery-container">
+        <div class="gallery-gallery">
+            {% for image in gallery %}
+                <a href="{{ image.image.url }}" data-lightbox="models" data-title="{{ image.title }}">
+                    <img src="{{ image.image.url }}" alt="">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}

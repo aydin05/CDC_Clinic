@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<style>
+    .title-color {
+        color: #16a085; /* Custom teal color for the title */
+    }
+    .btn-custom {
+        background-color: #16a085; /* Custom teal color for buttons */
+        border-color: #16a085;
+    }
+    .btn-custom:hover {
+        background-color: #13876f; /* Slightly darker shade on hover */
+        border-color: #13876f;
+    }
+    /* Ensure the content aligns to the top */
+    .align-items-start {
+        align-items: start;
+    }
+</style>
+
+<section class="pt-5 pb-5 bg-light">
+    <div class="container">
+        <!-- Title and date in the center header of the page -->
+        <div class="row mb-4 justify-content-center">
+            <div class="col-md-12 text-center">
+                <h1 class="fw-bold title-color">{{ object.title }}</h1>
+                <p class="title-color"><i class="fas fa-calendar-alt me-2"></i>{{ object.created_at }}</p>
+            </div>
+        </div>
+
+        <!-- Post content area, using Flexbox for better alignment -->
+        <div class="row align-items-start">
+            <!-- Post Image on the left or top depending on screen size -->
+            <div class="col-md-6 mb-4">
+                <img src="{{ object.image.url }}" alt="{{ object.title }}" class="img-fluid rounded shadow">
+            </div>
+
+            <!-- Post Body on the right or bottom depending on screen size -->
+            <div class="col-md-6 ">
+                <div class="post-text">
+                   <h5> {{ object.content|safe }} </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button centered at the bottom of the section -->
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <a href="{% url 'myapp:posts' %}" class="btn btn-custom btn-lg">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Blogs
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

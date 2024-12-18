@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}{{ form.instance.id|default:"Add New" }} Employee{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h2>{{ form.instance.id|default:"Add New" }} Employee</h2>
+    </div>
+    <form method="POST" enctype="multipart/form-data" class="styled-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.non_field_errors }}
+        </div>
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small>{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button type="submit" class="btn create-btn">Save</button>
+            <a href="{% url 'dashboard:employee_list' %}" class="btn cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

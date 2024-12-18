@@ -1,0 +1,7 @@
+<h1>Delete Gallery</h1>
+<p>Are you sure you want to delete "{{ gallery.gallery_id.image }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'dashboard:gallery_list' %}">Cancel</a>
+</form>

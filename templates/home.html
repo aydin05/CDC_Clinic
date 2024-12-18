@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <section class="home" id="home">
+        <div class="image">
+            <img src="{% static 'media/Psychologist-bro.svg' %}" alt="">
+        </div>
+
+        <div class="content">
+            <h3>stay safe, stay healthy</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem consequuntur ipsum laudantium
+                mollitia odio pariatur quae soluta sunt tenetur? Culpa, dolorem, mollitia. Amet expedita inventore odit,
+                sapiente tenetur ut?</p>
+            <a href="" class="btn"> contact us <span class="fas fa-chevron-right"></span></a>
+        </div>
+    </section>
+    {#  Service  #}
+    <section class="services" id="services">
+
+        <h1 class="heading"> our <span>services</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>free checkups</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+            <div class="box">
+                <h3>24/7 ambulance</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+            <div class="box">
+                <h3>expert doctors</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+            <div class="box">
+                <h3>medicines</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+            <div class="box">
+                <h3>bed facility</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+            <div class="box">
+                <h3>total care</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+                <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="gallery-slide" id="gallery-slide">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h1 class="heading"><span>Gallery</span></h1>
+            </div>
+        </div>
+        <div class="position-relative">
+            <div class="gallery-pre-btn-container">
+                <button class="gallery-pre-btn">
+                    <img src="{% static 'media/left-chevron.png' %}" alt="Previous">
+                </button>
+            </div>
+            <div class="gallery-slide-container">
+                {% for image in gallery %}
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="{{ image.image.url }}" class="gallery-thumb" alt="Gallery Image">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="gallery-nxt-btn-container">
+                <button class="gallery-nxt-btn">
+                    <img src="{% static 'media/right-chevron.png' %}" alt="Next">
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    <section class="reviews-slide" id="reviews-slide">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h1 class="heading"><span>Reviews</span></h1>
+            </div>
+        </div>
+        <div class="position-relative">
+            <button class="reviews-pre-btn">
+                <img src="{% static 'media/left-chevron.png' %}" alt="Previous">
+            </button>
+            <div class="reviews-slide-container">
+                {% for review in reviews %}
+                    <div class="review-card">
+                        <div class="card-body">
+                            <p class="review-text">"{{ review.content }}"</p>
+                            <div class="review-author">
+                                <h5 class="author-name">{{ review.author }}</h5>
+                                <span class="author-role">{{ review.role }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="reviews-nxt-btn">
+                <img src="{% static 'media/right-chevron.png' %}" alt="Next">
+            </button>
+        </div>
+    </div>
+</section>
+
+
+
+    <script>
+        const galleryContainer = document.querySelector('.gallery-slide-container');
+const galleryNextBtn = document.querySelector('.gallery-nxt-btn');
+const galleryPrevBtn = document.querySelector('.gallery-pre-btn');
+
+let containerWidth = galleryContainer.getBoundingClientRect().width;
+
+galleryNextBtn.addEventListener('click', () => {
+    galleryContainer.scrollLeft += containerWidth;
+});
+
+galleryPrevBtn.addEventListener('click', () => {
+    galleryContainer.scrollLeft -= containerWidth;
+});
+
+const reviewsContainer = document.querySelector('.reviews-slide-container');
+const reviewsNextBtn = document.querySelector('.reviews-nxt-btn');
+const reviewsPrevBtn = document.querySelector('.reviews-pre-btn');
+
+let reviewsContainerWidth = reviewsContainer.getBoundingClientRect().width;
+
+reviewsNextBtn.addEventListener('click', () => {
+    reviewsContainer.scrollLeft += reviewsContainerWidth;
+});
+
+reviewsPrevBtn.addEventListener('click', () => {
+    reviewsContainer.scrollLeft -= reviewsContainerWidth;
+});
+
+    </script>
+{% endblock body %}

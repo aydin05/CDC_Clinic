@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .map-container, .address-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Aligns items vertically */
+        margin-top: 20px;
+        width: 100%; /* Ensures container width is responsive */
+    }
+
+    .map-container iframe.responsive-map {
+        width: 100%; /* Full width of the container */
+        height: 450px; /* Default height */
+        max-width: 900px; /* Maximum width to ensure it does not stretch too wide on larger screens */
+        border: none;
+    }
+
+    .address-container h3 {
+        text-align: center;
+        margin: 5px 0; /* Adds a small space between address lines */
+    }
+
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .map-container iframe.responsive-map {
+            height: 300px; /* You might adjust this to a higher value if needed */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .map-container iframe.responsive-map {
+            height: 200px; /* Adjusted for very small devices */
+        }
+    }
+</style>
+
+<section class="about" id="about">
+    <h1 class="heading"><span>about</span> us</h1>
+    <div class="row">
+        {% for about in about_us %}
+        <div class="image">
+            <img src="{{ about.image.url }}" alt="">
+        </div>
+        <div class="content">
+            <h3>{{ about.title }}</h3>
+            <p>{{ about.content }}</p>
+            {% if about.video_url %}
+            <div class="video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/{{ about.video_url|cut:'https://www.youtube.com/watch?v=' }}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Location Section -->
+<section class="location" id="location">
+    <h2 class="heading">Our Location</h2>
+    <div class="map-container">
+        <iframe class="responsive-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2439.5814220034424!2d49.8356574153659!3d40.40473157936544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030878a4912be01%3A0xa11c2436ab0fb235!2s50%20Məmməd%20Araz%2C%20Bak%C4%B1%201108%2C%20Azərbaycan!5e0!3m2!1sen!2spl!4v1606952539134!5m2!1sen!2spl"
+            frameborder="0"
+            style="border:0;"
+            allowfullscreen=""
+            aria-hidden="false"
+            tabindex="0">
+        </iframe>
+    </div>
+    <div class="address-container">
+        <h3>50C Məmməd Araz, Bakı 1108, Azərbaycan</h3>
+        <h3>Phone: (123) 456-7890</h3>
+    </div>
+</section>
+{% endblock body %}

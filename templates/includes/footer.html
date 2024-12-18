@@ -1,0 +1,56 @@
+{% load static %}
+<section class="footer">
+    <div class="footer-box-container">
+        <div class="footer-box">
+            <h3>quick links</h3>
+            <a href="{% url 'myapp:home' %}"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="{% url 'myapp:services' %}"><i class="fas fa-chevron-right"></i> Services</a>
+            <a href="{% url 'myapp:employees' %}"><i class="fas fa-chevron-right"></i> Employees</a>
+            <a href="{% url 'myapp:posts' %}"><i class="fas fa-chevron-right"></i> Posts</a>
+            <a href="{% url 'myapp:gallery' %}"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="{% url 'myapp:about-us' %}"><i class="fas fa-chevron-right"></i> About Us</a>
+        </div>
+
+        {#        <div class="footer-box">#}
+        {#            <h3>our services</h3>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Home</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Services</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Employees</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Posts</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Gallery</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> About Us</a>#}
+        {#            <a href="#"><i class="fas fa-chevron-right"></i> Contact</a>#}
+        {#        </div>#}
+
+        <div class="footer-box">
+            {% for contacts in contact %}
+                <h3>contact info</h3>
+                <a href="#"><i class="fas fa-phone"></i> {{ contacts.phone }}</a>
+                <a href="#"><i class="fas fa-envelope"></i> {{ contacts.email }}</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> {{ contacts.address }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="footer-box">
+            <h3>follow us</h3>
+            {% for network in social_network %}
+                <a href="{{ network.url }}" target="_blank">
+                    {% if network.icon %}
+                        <img src="{{ network.icon.url }}" alt="{{ network.name }}"
+                             style="width: 20px; height: 20px; margin-right: 5px;">
+                    {% else %}
+                        <i class="fab fa-{{ network.name|lower }}"></i>
+                    {% endif %}
+                    {{ network.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+
+    </div>
+</section>
+
+
+
+
+

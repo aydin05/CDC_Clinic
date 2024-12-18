@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Gallery Management{% endblock %}
+
+{% block content %}
+<div class="employee-list">
+    <a href="{% url 'dashboard:gallery_create' %}" class="btn create-btn">Add New Photo</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for photo in gallery %}
+            <tr>
+                <td><img src="{{ photo.image.url }}" alt="" width="150"></td>
+                <td>
+{#                    <a href="{% url 'dashboard:employee_update' employee.employee_id %}" class="btn action-btn edit-btn">Edit</a>#}
+                    <form action="{% url 'dashboard:gallery_delete' photo.gallery_id %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this Photo?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

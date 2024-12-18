@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Reviews Management{% endblock %}
+
+{% block content %}
+<div class="post-list">
+    <a href="{% url 'dashboard:reviews_create' %}" class="btn create-btn">Create New Review</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.author }}</td>
+                <td>{{ review.content }}</td>
+                <td>
+                    <a href="{% url 'dashboard:reviews_update' review.id %}" class="btn action-btn edit-btn">Edit</a>
+                    <form action="{% url 'dashboard:reviews_delete' review.id %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this Review?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
