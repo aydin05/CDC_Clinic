@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'Clinic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'demo_db',
-        'USER': 'root',
-        'PASSWORD': 'Test@1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': os.environ.get('railway'),
+        'USER': os.environ.get('root'),
+        'PASSWORD': os.environ.get('tTGtrAuNLJKDqvsjzsuNnBiPcraqnaRv'),
+        'HOST': os.environ.get('mysql.railway.internal'),
+        'PORT': os.environ.get('3306'),
     }
 }
 
